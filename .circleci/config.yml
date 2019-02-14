@@ -2,11 +2,9 @@ version: 2.1
 orbs:
   todays-imas-idol: yutagoto/todays-imas-idol@1.0.0
 jobs:
-  build:
+  push:
     docker:
       - image: 'ubuntu:18.04'
-        environment:
-          TZ: Asia/Tokyo
     steps:
       - run:
           command: |
@@ -14,18 +12,31 @@ jobs:
             apt-get install -y sudo
       - todays-imas-idol/slack-notification-todays-imas-idol:
           slack_username: 今日のアイドル
-          slack_icon: '${SLACK_ICON}'
+          slack_icon: '${PUSH_SLACK_ICON}'
+          slack_webhook: '${PUSH_SLACK_WEB_HOOK}'
+  daily:
+    docker:
+      - image: 'ubuntu:18.04'
+    steps:
+      - run:
+          command: |
+            apt-get update
+            apt-get install -y sudo
+      - todays-imas-idol/slack-notification-todays-imas-idol:
+          slack_username: 今日のアイドル
+          slack_icon: '${DAILY_SLACK_ICON}'
+          slack_webhook: '${DAILY_SLACK_WEB_HOOK}'
 workflows:
   main:
     jobs:
-      - build
+      - push
   daily:
     triggers:
       - schedule:
-          cron: "0 0 * * *"
+          cron: "30 0 * * *"
           filters:
             branches:
               only:
                 - master
     jobs:
-      - build
+      - daily
