@@ -7,7 +7,11 @@
 
 ## CircleCIの環境変数で設定必要なもの
 
-* `SLACK_WEB_HOOK`
-    * SlackのIncoming Webhookで用意したWebhook URL
-* `SLACK_ICON`
-    * Slackのアイコンエイリアス。`:slack:`, `:calendar:` など
+* 日時で通知するチャンネル用
+    * `DAILY_SLACK_WEB_HOOK`
+        * SlackのIncoming Webhookで用意したWebhook URL
+    * `DAILY_SLACK_ICON`
+        * Slackのアイコンエイリアス。`:slack:`, `:calendar:` など
+* PUSHごとに通知するチャンネル用(主に開発向け)
+    * `PUSH_SLACK_WEB_HOOK`
+    * `PUSH_SLACK_ICON`
