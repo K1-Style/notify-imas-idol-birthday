@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  todays-imas-idol: yutagoto/todays-imas-idol@1.0.0
+  todays-imas-idol: yutagoto/todays-imas-idol@1.0.1
 jobs:
   push:
     docker:
