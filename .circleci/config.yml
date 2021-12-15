@@ -30,13 +30,13 @@ workflows:
   main:
     jobs:
       - push
-  daily:
-    triggers:
-      - schedule:
-          cron: "30 0 * * *"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - daily
+#  daily:
+#    triggers:
+#      - schedule:
+#          cron: "30 0 * * *"
+#          filters:
+#            branches:
+#              only:
+#                - master
+#    jobs:
+#      - daily
